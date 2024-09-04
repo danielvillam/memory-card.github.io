@@ -79,6 +79,7 @@ const matrixGenerator = (cardValues, size = 4) => {
   cardValues = [...cardValues, ...cardValues];
   //simple shuffle, DO IT YOURSELF
   //Your code here
+  cardValues.sort(() => Math.random() - 0.5);
   for (let i = 0; i < size * size; i++) {
     /*
         Create Cards
@@ -173,6 +174,7 @@ startButton.addEventListener("click", () => {
   //Function to to start the timer. Again, check setInterval
   //Hint: You already have a function that checks the time each second, use it wisely
   //YOUR CODE HERE
+  interval = setInterval(timeGenerator, 1000); // Llama a la función timeGenerator cada segundo
   moves.innerHTML = `<span>Pasos:</span> ${movesCount}`;
   initializer();
 });
