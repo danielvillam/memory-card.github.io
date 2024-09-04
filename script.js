@@ -121,6 +121,42 @@ const matrixGenerator = (cardValues, size = 4) => {
       //If the cards don't match, you should flipped them again. Do you see the class flipped ? Well after this you can't see it (like JOHN CEEENAAAA)
 
       //Note: It would be nice if the flipped process would be 'delayed'
+
+      if (firstCard === null) {
+        // Primera carta seleccionada
+        firstCard = card;
+      } else {
+        // Segunda carta seleccionada
+        secondCard = card;
+
+        // Comparar las dos cartas seleccionadas
+        if (firstCard.getAttribute("data-card-value") === secondCard.getAttribute("data-card-value")) {
+          // Las cartas coinciden
+          firstCard.classList.add("matched");
+          secondCard.classList.add("matched");
+          winCount++;
+
+          // Reiniciar las variables
+          firstCard = null;
+          secondCard = null;
+
+          // Verificar si el jugador ha ganado
+          if (winCount === cardValues.length / 2) {
+            result.innerText = "Ganaste";
+            stopGame(); // Llamar a la función para detener el juego
+          }
+        } else {
+          // Las cartas no coinciden, voltearlas nuevamente después de un pequeño retraso
+          setTimeout(() => {
+            firstCard.classList.remove("flipped");
+            secondCard.classList.remove("flipped");
+
+            // Reiniciar las variables
+            firstCard = null;
+            secondCard = null;
+          }, 500);
+        }
+      }
     });
   });
 };
