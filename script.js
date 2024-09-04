@@ -188,6 +188,7 @@ stopButton.addEventListener(
     startButton.classList.remove("hide");
     // timer created with setInterVal needs to be cleared
     //YOUR CODE HERE
+    clearInterval(interval);
   })
 );
 
